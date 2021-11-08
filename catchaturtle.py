@@ -2,9 +2,14 @@
 #-----import statements-----
 import turtle 
 import random as rand
+import leaderboard as lb
 class error(Exception):
   pass
 #-----game configuration----
+leaderboard_file_name = "leaderboard.py"
+leader_names_list = []
+leader_scores_list = []
+player_name = input("What is your name?")
 wn = turtle.Screen()
 wn.bgcolor("green")
 while True:
@@ -49,12 +54,32 @@ spot.shapesize(spot_size)
 spot.fillcolor(spot_fillcolor)
 spot.speed(spot_speed)
 #-----game functions--------
+# manages the leaderboard for top 5 scorers
+def manage_leaderboard():
+  
+  global leader_scores_list
+  global leader_names_list
+  global score
+  global spot
+
+  # load all the leaderboard records into the lists
+  lb.load_leaderboard(leaderboard_file_name, leader_names_list, leader_scores_list)
+
+  # TODO
+  if (len(leader_scores_list) < 5 or score > leader_scores_list[4]):
+    lb.update_leaderboard(leaderboard_file_name, leader_names_list, leader_scores_list, player_name, score)
+    lb.draw_leaderboard(leader_names_list, leader_scores_list, True, spot, score)
+
+  else:
+    lb.draw_leaderboard(leader_names_list, leader_scores_list, False, spot, score)
+
 def countdown():
   global timer, timer_up
   counter.clear()
   if timer <= 0:
     counter.write("Time's Up", font=font_setup)
     timer_up = True
+    manage_leaderboard()
   else:
     counter.write("Timer: " + str(timer), font=font_setup)
     timer -= 1
