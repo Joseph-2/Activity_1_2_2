@@ -19,17 +19,23 @@ def load_leaderboard(file_name, leader_names, leader_scores):
     index = 0
 
     # TODO 1: use a while loop to read the leader name from the line (format is "leader_name,leader_score")
-
+    while (line[index] != ","):
+      leader_name = leader_name + line[index] 
+      index = index + 1
+    print("leader name is:",leader_name)
 
     # TODO 2: add the leader name to the list
-
-    
+    leader_names.append(leader_name)
     # TODO 3: read the player score using a similar loop
+    index = index + 1
+    while (line[index] != "\n"):
+      leader_score = leader_score + line[index]
+      index = index + 1
 
     
     # TODO 4: add the player score to the list
-
-
+    leader_score = int(leader_score)
+    leader_scores.append(leader_score)
   leaderboard_file.close()
 
 
@@ -39,9 +45,9 @@ def update_leaderboard(file_name, leader_names, leader_scores, player_name, play
   leader_index = 0
   # TODO 5: loop through all the scores in the existing leaderboard list
   '''
-    while ():
+    while (leader_index<len(leader_scored)):
     # TODO 6: check if this is the position to insert new score at
-    if ():
+    if (player_score>=leader_scores[leader_index]):
       break
     else:
       leader_index = leader_index + 1

@@ -6,10 +6,10 @@ import leaderboard as lb
 class error(Exception):
   pass
 #-----game configuration----
-leaderboard_file_name = "leaderboard.py"
+leaderboard_file_name = "a122_leaderboard.txt"
 leader_names_list = []
 leader_scores_list = []
-player_name = input("What is your name?")
+player_name = input("What is your name? ")
 wn = turtle.Screen()
 wn.bgcolor("green")
 while True:
@@ -34,7 +34,7 @@ spot_fillcolor = "blue"
 score = 0
 font_setup = ("Arial",20,"bold")
 font_setup = ("Arial", 20, "normal")
-timer = 30
+timer = 5
 counter_interval = 1000   #1000 represents 1 second
 timer_up = False
 #-----initialize turtle-----
